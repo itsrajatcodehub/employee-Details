@@ -1,0 +1,139 @@
+<div class="main-container">
+
+    <h1>Employee Detail Form</h1>
+    
+    <form [formGroup]="employeeForm">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Name:</mat-label>
+                <input matInput placeholder="Enter Your Name" formControlName="username">
+            </mat-form-field>
+        </div>
+    
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Father Name: </mat-label>
+                <input matInput placeholder="Enter your FatherName" formControlName="fathername">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Mother Name:</mat-label>
+                <input matInput placeholder="Enter your MotherName" formControlName="mothername">
+            </mat-form-field>
+        </div>
+    
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Date of Birth: </mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dob">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        </div>
+    
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Address: </mat-label>
+                <input matInput placeholder="Enter your Address" formControlName="address">
+            </mat-form-field>
+        </div>
+    
+        <div class="fields">
+            <div formArrayName="education">
+                    <table>
+                        <tbody>
+                            <tr *ngFor="let educationDetails of employeeForm.controls.education['controls']; let i = index" [formGroupName]="i">
+                                <td>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Education: </mat-label>
+                                        <input matInput placeholder="Enter your Education Details" formControlName="edu">
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>From: </mat-label>
+                                        <input matInput [matDatepicker]="picker" formControlName="from">
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                      </mat-form-field>
+                                </td>
+                                <td>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>To: </mat-label>
+                                        <input matInput [matDatepicker]="picker"  formControlName="to">
+                                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                      </mat-form-field>
+                                </td>
+                                <td>
+                                    <button mat-icon-button *ngIf="employeeForm.controls.education.controls.length > 0" (click)="addEducationField()"><mat-icon>add_circle</mat-icon></button>
+                                </td>
+                                <td>
+                                    <button mat-icon-button *ngIf="employeeForm.controls.education.controls.length > 1" (click)="deleteEducationField(i)"><mat-icon>delete</mat-icon></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Email:</mat-label>
+                <input matInput placeholder="Enter your Email" formControlName="email">
+            </mat-form-field>
+        </div>
+    
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Contact No.: </mat-label>
+                <input matInput placeholder="Enter your Contact No." formControlName="contact">
+            </mat-form-field>
+        </div>
+    
+        <div class="fields">
+            <div formArrayName="experience">
+                <table>
+                    <tbody>
+                        <tr *ngFor="let experienceDetails of employeeForm.controls.experience['controls']; let i = index" [formGroupName]="i">
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Experience: </mat-label>
+                                    <input matInput placeholder="Enter your Education Details" formControlName="exp">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>From: </mat-label>
+                                    <input matInput [matDatepicker]="picker" formControlName="from">
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker" style="display: flex;"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>To: </mat-label>
+                                    <input matInput [matDatepicker]="picker"  formControlName="to">
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field>
+                            </td>
+                            <td>
+                                <button mat-icon-button *ngIf="employeeForm.controls.experience.controls.length > 0" (click)="addExperienceField()"><mat-icon>add_circle</mat-icon></button>
+                            </td>
+                            <td>
+                                <button mat-icon-button *ngIf="employeeForm.controls.experience.controls.length > 1" (click)="deleteExperienceField(i)"><mat-icon>delete</mat-icon></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+        </div>
+    
+    
+        <button mat-raised-button type="submit" class="submit" color="primary" (click)="submit()">Submit</button>
+    
+    </form>
+
+</div>
